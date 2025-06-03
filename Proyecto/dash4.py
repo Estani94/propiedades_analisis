@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Cargar datos
-df = pd.read_csv("propiedades_limpias_tipo.csv")
+df = pd.read_csv("Proyecto/propiedades_limpias_tipo.csv")
 
 # Conversiones necesarias
 df['Precio USD'] = pd.to_numeric(df['Precio USD'], errors='coerce')
