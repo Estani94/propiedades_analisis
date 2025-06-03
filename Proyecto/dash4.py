@@ -158,22 +158,6 @@ fig5, ax5 = plt.subplots(figsize=(10,4))
 sns.histplot(df_filtrado, x='Densidad ambientes', bins=30, kde=True, hue='Tipo', multiple='stack', ax=ax5)
 st.pyplot(fig5)
 
-# --- MAPA INTERACTIVO ---
-
-st.header("Mapa de propiedades (filtradas)")
-
-# Necesitamos latitud y longitud, si no las tenés, podés usar geocoding externo
-# Supongo que el df tiene columnas 'Lat' y 'Lon'; si no, omitir este bloque
-if 'Lat' in df_filtrado.columns and 'Lon' in df_filtrado.columns:
-    m = folium.Map(location=[-31.4167, -64.1833], zoom_start=12)  # Córdoba por defecto
-    for _, row in df_filtrado.iterrows():
-        popup_text = f"{row['Nombre']}<br>Precio: ${row['Precio USD']:,.0f}<br>Superficie: {row['M2 Totales']} m²<br>Tipo: {row['Tipo']}"
-        folium.Marker([row['Lat'], row['Lon']], popup=popup_text).add_to(m)
-    st_folium(m, width=700, height=450)
-else:
-    st.info("No hay columnas de latitud y longitud para mostrar mapa.")
-
 # Mostrar tabla con propiedades filtradas
 st.header("Listado de propiedades filtradas")
 st.dataframe(df_filtrado.sort_values(by='Precio USD'))
-
