@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import folium
-from streamlit_folium import st_folium
 
 # Cargar datos
 df = pd.read_csv("propiedades_limpias_tipo.csv")
